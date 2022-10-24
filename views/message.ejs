@@ -1,0 +1,27 @@
+    <%- include("partials/header") %>
+    
+        <h2>
+            Social Network
+        </h2>
+        <span style="font-size:large">Your Message With Bolu</span>
+        <div>
+            <% if(typeof messages != "undefined"){%>
+                <%messages.forEach((message) => {%>
+                    <p><%-message.message%></p>
+                    <button><a href="/deleteMessage/<%=message._id%>">Delete</a></button>
+               <% }) %>
+          <%  }  %>
+        </div>
+        <form action="/message" method="post">
+            <textarea name="message" id="editor" cols="30" rows="10"></textarea>
+            <button type="submit" style="background-color:tomato; border:none; height: 26px; width: 50px;">Send</button>
+        </form>
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>      
+
+   <%-include("footer")%>
